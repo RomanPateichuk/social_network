@@ -2,11 +2,17 @@
   display: grid;
   width: 1200px;
   margin: 0 auto;
-  grid-template-rows: 60px calc(100vh - 60px);
+  grid-template-rows: 60px auto;
   grid-template-columns: 2fr 10fr;
   grid-gap: 10px;
   grid-template-areas:
     "h h"
     "n c";
 
+}
+
+
+.app-wrapper-content {
+  grid-area: c;
+  background-color: brown;
 }
