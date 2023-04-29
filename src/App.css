@@ -4,7 +4,6 @@
   margin: 0 auto;
   grid-template-rows: 60px auto;
   grid-template-columns: 2fr 10fr;
-  grid-gap: 10px;
   grid-template-areas:
     "h h"
     "n c";
