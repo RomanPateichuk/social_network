@@ -9,7 +9,7 @@ import Settings from './components/Settings/Settings'
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import ErrorPage from './components/ErrorPage/ErrorPage';
 
-function App() {
+function App(props) {
   return (
     <Router>
       <div className="app-wrapper">
@@ -18,8 +18,8 @@ function App() {
         <div className="app-wrapper-content">
           <Routes>
             <Route path="/" element={<Navigate replace to="/profile" />} />
-            <Route path='/profile' element={<Profile />} />
-            <Route path='/dialogs' element={<Dialogs />} />
+            <Route path='/profile' element={<Profile postsData={props.postsData} />} />
+            <Route path='/dialogs' element={<Dialogs dialogsData={props.dialogsData} messagesData={props.messagesData} />} />
             <Route path='/news' element={<News />} />
             <Route path='/music' element={<Music />} />
             <Route path='/settings' element={<Settings />} />
