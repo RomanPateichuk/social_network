@@ -1,3 +1,5 @@
+import { rerenderEntireTree } from '../render.js'
+import { v4 as uuid } from 'uuid';
 let state = {
 
   profilePage: {
@@ -39,11 +41,13 @@ let state = {
         name: 'Sacha'
       }
     ],
-  }
+  },
+}
 
-
-
-
+export let addPost = (postMessage) => {
+  let newPost = { id: uuid(), message: postMessage, likesCount: '0' }
+  state.profilePage.posts.push(newPost)
+  rerenderEntireTree(state);
 }
 
 
