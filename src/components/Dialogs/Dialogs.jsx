@@ -2,20 +2,27 @@ import styles from './Dialog.module.css'
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message'
 import React from 'react'
+import { sendMessageCreator, updateNewMessageBodyCreator } from '../../redux/state';
 
 
 
 
 const Dialogs = (props) => {
-  let dialogElementsJSX = props.dialogsData.dialogs.map(item => <DialogItem key={item.id} name={item.name} id={item.id} />)
-  let messagesDataJSX = props.dialogsData.messages.map(item => <Message key={item.id} message={item.message} />)
 
+  let state = props.store.getState().dialogsPage
+
+  let dialogElementsJSX = state.dialogs.map(item => <DialogItem key={item.id} name={item.name} id={item.id} />)
+  let messagesDataJSX = state.messages.map(item => <Message key={item.id} message={item.message} />)
+  let newMessageBody = state.newMessageBody
   let message = React.createRef()
 
-  let sendMessage = () => {
-    let data = message.current.value
-    console.log('data: ', props.dialogsData.messages);
-    console.log(data);
+  let onSendMessageClick = () => {
+    props.store.dispatch(sendMessageCreator())
+  }
+
+  let onNewMessageChange = (e) => {
+    let body = e.target.value
+    props.store.dispatch(updateNewMessageBodyCreator(body))
   }
 
   return (
@@ -24,9 +31,13 @@ const Dialogs = (props) => {
         {dialogElementsJSX}
       </div>
       <div className={styles.messages}>
-        {messagesDataJSX}
-        <textarea ref={message}></textarea>
-        <button onClick={sendMessage}>Send</button>
+        <div>{messagesDataJSX}</div>
+        <div>
+          <div><textarea onChange={onNewMessageChange} value={newMessageBody} placeholder='Enter your message' ref={message}></textarea></div>
+          <div><button onClick={onSendMessageClick}>Send</button></div>
+        </div>
+
+
       </div>
 
     </div>
