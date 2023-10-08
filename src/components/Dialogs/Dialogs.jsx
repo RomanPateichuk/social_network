@@ -14,7 +14,8 @@ const Dialogs = (props) => {
 
   let sendMessage = () => {
     let data = message.current.value
-    console.log('data: ', data);
+    console.log('data: ', props.dialogsData.messages);
+    console.log(data);
   }
 
   return (
