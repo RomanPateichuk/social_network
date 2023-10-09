@@ -1,7 +1,40 @@
 import { v4 as uuid } from 'uuid';
 const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY'
 const SEND_MESSAGE = 'SEND-MESSAGE'
-const dialogsReducer = (state, action) => {
+
+let initialState = {
+  messages: [
+    { id: "6", message: "Hi" },
+    { id: "7", message: "Hello" },
+    { id: "8", message: "How are you?" },
+  ],
+  dialogs: [
+    {
+      id: "1",
+      name: 'Roman'
+    },
+    {
+      id: "2",
+      name: 'Sveta'
+    },
+    {
+      id: "3",
+      name: 'Andrey'
+    },
+    {
+      id: "4",
+      name: 'Seny'
+    },
+    {
+      id: "5",
+      name: 'Sacha'
+    }
+  ],
+
+  newMessageBody: '',
+}
+
+const dialogsReducer = (state = initialState, action) => {
 
 
   switch (action.type) {

@@ -1,7 +1,20 @@
 import { v4 as uuid } from 'uuid';
 const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
-const profileReducer = (state, action) => {
+
+let initialState = {
+  posts: [
+    { id: "1", message: "'Hi, how are you", likeCount: "0" },
+    { id: "2", message: "'Hi, how are you", likesCount: '23' },
+    { id: "3", message: "It's, my first post", likesCount: "0" },
+    { id: "4", message: "It's, my first post", likesCount: "0" },
+    { id: "5", message: "It's, my first post", likesCount: "0" },
+    { id: "6", message: "It's, my first post", likesCount: "0" },
+  ],
+  newPostText: 'it-kamasutra.com'
+}
+
+const profileReducer = (state = initialState, action) => {
 
   switch (action.type) {
     case ADD_POST:
