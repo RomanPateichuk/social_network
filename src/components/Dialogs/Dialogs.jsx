@@ -8,10 +8,9 @@ import React from 'react'
 
 
 const Dialogs = (props) => {
-
-  let dialogElementsJSX = props.state.dialogs.map(item => <DialogItem key={item.id} name={item.name} id={item.id} />)
-  let messagesDataJSX = props.state.messages.map(item => <Message key={item.id} message={item.message} />)
-  let newMessageBody = props.state.newMessageBody
+  let dialogElementsJSX = props.dialogsPage.dialogs.map(item => <DialogItem key={item.id} name={item.name} id={item.id} />)
+  let messagesDataJSX = props.dialogsPage.messages.map(item => <Message key={item.id} message={item.message} />)
+  let newMessageBody = props.dialogsPage.newMessageBody
   let message = React.createRef()
 
   let onSendMessageClick = () => {
