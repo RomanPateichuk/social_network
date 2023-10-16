@@ -1,6 +1,8 @@
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET-USERS'
+const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE'
+const SET_TOTAL_USERS_COUNT = 'SET-TOTAL-USERS-COUNT'
 
 let initialState = {
   users: [
@@ -10,7 +12,10 @@ let initialState = {
     // { id: "4", photoUrl: 'https://audiostories.ru/images/artists/luntik-i-ego-druzya.jpg', followed: false, fullName: "name4", status: "status4", location: { city: "city4", country: 'country4' } },
     // { id: "5", photoUrl: 'https://audiostories.ru/images/artists/luntik-i-ego-druzya.jpg', followed: true, fullName: "name5", status: "status5", location: { city: "city5", country: 'country5' } },
     // { id: "6", photoUrl: 'https://audiostories.ru/images/artists/luntik-i-ego-druzya.jpg', followed: false, fullName: "name6", status: "status6", location: { city: "city6", country: 'country6' } },
-  ]
+  ],
+  pageSize: 5,
+  totalUsersCount: 0,
+  currentPage: 1
 }
 const usersReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -35,8 +40,11 @@ const usersReducer = (state = initialState, action) => {
         })
       }
     case SET_USERS:
-      return { ...state, users: [...state.users, ...action.users] }
-
+      return { ...state, users: [...action.users] }
+    case SET_CURRENT_PAGE:
+      return { ...state, currentPage: action.currentPage }
+    case SET_TOTAL_USERS_COUNT:
+      return { ...state, totalUsersCount: action.totalUsersCount }
     default: return state
   }
 }
@@ -44,6 +52,8 @@ const usersReducer = (state = initialState, action) => {
 export const followAC = (id) => ({ type: FOLLOW, userId: id })
 export const unfollowAC = (id) => ({ type: UNFOLLOW, userId: id })
 export const setUsersAC = (users) => ({ type: SET_USERS, users })
+export const setCurrentPageAC = (pageNumber) => ({ type: SET_CURRENT_PAGE, currentPage: pageNumber })
+export const setUsersTotalUsersCountAC = (totalUsersCount) => ({ type: SET_TOTAL_USERS_COUNT, totalUsersCount: totalUsersCount })
 
 
 export default usersReducer
