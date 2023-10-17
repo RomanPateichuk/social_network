@@ -2,6 +2,7 @@ import React from 'react'
 import s from './Users.module.css'
 import userPhoto from '../../assets/images/userPhoto.png'
 import { NavLink } from 'react-router-dom'
+import axios from 'axios'
 
 let Users = (props) => {
   let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
@@ -30,8 +31,30 @@ let Users = (props) => {
           </div>
           <div>
             {item.followed
-              ? <button onClick={() => { props.unfollow(item.id) }}>Unfollow</button>
-              : <button onClick={() => { props.follow(item.id) }}>Follow</button>
+              ? <button onClick={() => {
+
+                axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${item.id}`, {
+                  withCredentials: true
+                }).then(response => {
+                  if (response.data.resultCode === 0) {
+                    props.unfollow(item.id)
+                  }
+                })
+
+
+
+
+
+              }}>Unfollow</button>
+              : <button onClick={() => {
+                axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${item.id}`, {}, {
+                  withCredentials: true
+                }).then(response => {
+                  if (response.data.resultCode === 0) {
+                    props.follow(item.id)
+                  }
+                })
+              }}>Follow</button>
             }
           </div>
         </span>
@@ -45,8 +68,8 @@ let Users = (props) => {
             <div>{'item.location.city'}</div>
           </span>
         </span>
-      </div>)
-    }</div>
+      </div >)
+    }</div >
 }
 
 
