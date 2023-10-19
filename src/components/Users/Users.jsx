@@ -2,7 +2,6 @@ import React from 'react'
 import s from './Users.module.css'
 import userPhoto from '../../assets/images/userPhoto.png'
 import { NavLink } from 'react-router-dom'
-import axios from 'axios'
 
 let Users = (props) => {
   let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
@@ -16,7 +15,9 @@ let Users = (props) => {
   return <div className={s.wrapper}>
     <div>
       {
-        pages.map(item => <span key={item} onClick={(e) => { props.onPageChanged(item) }} className={props.currentPage === item ? s.selectedPage : null}>{item}</span>)
+        pages.map(item => <span key={item} onClick={(e) => { props.onPageChanged(item) }}
+          className={props.currentPage === item ? s.selectedPage : null}>{item}
+        </span>)
 
       }
     </div>
@@ -32,27 +33,10 @@ let Users = (props) => {
           <div>
             {item.followed
               ? <button disabled={props.followingInProgress.some(id => id === item.id)} onClick={() => {
-                props.toggleFollowingProgress(true, item.id)
-                axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${item.id}`, {
-                  withCredentials: true
-                }).then(response => {
-                  if (response.data.resultCode === 0) {
-                    props.unfollow(item.id)
-                  }
-                  props.toggleFollowingProgress(false, item.id)
-                })
-
+                props.unfollow(item.id)
               }}>Unfollow</button>
               : <button disabled={props.followingInProgress.some(id => id === item.id)} onClick={() => {
-                props.toggleFollowingProgress(true, item.id)
-                axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${item.id}`, {}, {
-                  withCredentials: true
-                }).then(response => {
-                  if (response.data.resultCode === 0) {
-                    props.follow(item.id)
-                  }
-                  props.toggleFollowingProgress(false, item.id)
-                })
+                props.follow(item.id)
               }}>Follow</button>
             }
           </div>
