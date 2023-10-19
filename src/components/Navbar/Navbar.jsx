@@ -10,7 +10,7 @@ const Navbar = () => {
   return (
     <nav className={classes.nav}>
       <div className={classes.item}>
-        <NavLink to='/MyProfile' className={toggleActiveClass}>Profile</NavLink>
+        <NavLink to='/profile' className={toggleActiveClass}>Profile</NavLink>
       </div>
       <div className={classes.item}>
         <NavLink to='/dialogs' className={toggleActiveClass}>Messages</NavLink>
