@@ -4,6 +4,7 @@ import Dialogs from './Dialogs'
 import { connect } from 'react-redux'
 // const DialogsContainer = () => {
 import { withAuthRedirect } from "../../hoc/withAuthRedirect"
+import { compose } from 'redux';
 //   return (
 //     <StoreContext.Consumer>{(store) => {
 //       let onSendMessageClick = () => {
@@ -36,10 +37,8 @@ let mapDispatchToProps = (dispatch) => {
   }
 }
 
-let AuthRedirectComponent = withAuthRedirect(Dialogs)
 
-
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent);
-
-
-export default DialogsContainer
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  withAuthRedirect
+)(Dialogs)
