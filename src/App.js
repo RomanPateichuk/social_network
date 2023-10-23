@@ -6,7 +6,7 @@ import Music from './components/Music/Music'
 import Settings from './components/Settings/Settings'
 import UsersContainer from './components/Users/UsersContainer'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-// import ErrorPage from './components/ErrorPage/ErrorPage';
+import ErrorPage from './components/ErrorPage/ErrorPage';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import LoginPage from './components/Login/Login'
@@ -24,7 +24,7 @@ function App(props) {
             <Route path='/music' element={<Music />} />
             <Route path='/settings' element={<Settings />} />
             <Route path='/users' element={<UsersContainer />} />
-            {/* <Route path='*' element={<ErrorPage />} /> */}
+            <Route path='*' element={<ErrorPage />} />
             <Route path='/login' element={<LoginPage />} />
 
           </Routes>

@@ -1,16 +1,13 @@
 import Preloader from '../../common/Preloader/Preloader';
 import a from './ProfileInfo.module.css'
 import userDefaultPhoto from '../../../assets/images/userPhoto.png'
-
+import ProfileStatus from './ProfileStatus'
 const ProfileInfo = (props) => {
   if (!props.profile) {
     return <Preloader />
   }
   return (
     <div>
-      <div className={a.image_wrapper}>
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTWYenGebfzJCuwiR4WdjzTzI7BdavwbbeHA&usqp=CAU" alt="content" />
-      </div>
       <div className={a.descriptionBlock}>
         <img src={props.profile.photos.large ? props.profile.photos.large : userDefaultPhoto} alt="" />
         <p>id: {props.profile.userId}</p>
@@ -25,6 +22,7 @@ const ProfileInfo = (props) => {
           })
         }
       </div>
+      <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
     </div>
   );
 }

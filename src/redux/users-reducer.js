@@ -9,14 +9,7 @@ const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING'
 const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS'
 
 let initialState = {
-  users: [
-    // { id: "1", photoUrl: 'https://audiostories.ru/images/artists/luntik-i-ego-druzya.jpg', followed: true, fullName: "name1", status: "status1", location: { city: "city1", country: 'country1' } },
-    // { id: "2", photoUrl: 'https://audiostories.ru/images/artists/luntik-i-ego-druzya.jpg', followed: false, fullName: "name2", status: "status2", location: { city: "city2", country: 'country2' } },
-    // { id: "3", photoUrl: 'https://audiostories.ru/images/artists/luntik-i-ego-druzya.jpg', followed: true, fullName: "name3", status: "status3", location: { city: "city3", country: 'country3' } },
-    // { id: "4", photoUrl: 'https://audiostories.ru/images/artists/luntik-i-ego-druzya.jpg', followed: false, fullName: "name4", status: "status4", location: { city: "city4", country: 'country4' } },
-    // { id: "5", photoUrl: 'https://audiostories.ru/images/artists/luntik-i-ego-druzya.jpg', followed: true, fullName: "name5", status: "status5", location: { city: "city5", country: 'country5' } },
-    // { id: "6", photoUrl: 'https://audiostories.ru/images/artists/luntik-i-ego-druzya.jpg', followed: false, fullName: "name6", status: "status6", location: { city: "city6", country: 'country6' } },
-  ],
+  users: [],
   pageSize: 5,
   totalUsersCount: 0,
   currentPage: 1,
