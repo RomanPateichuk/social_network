@@ -24,8 +24,9 @@ function App(props) {
             <Route path='/music' element={<Music />} />
             <Route path='/settings' element={<Settings />} />
             <Route path='/users' element={<UsersContainer />} />
-            <Route path='*' element={<ErrorPage />} />
             <Route path='/login' element={<LoginPage />} />
+            <Route path='*' element={<ErrorPage />} />
+
 
           </Routes>
         </div>

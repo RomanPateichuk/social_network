@@ -7,6 +7,7 @@ let mapStateToPropsForRedirect = (state) => ({
 })
 
 export const withAuthRedirect = (Сomponent) => {
+
   class RedirectComponent extends React.Component {
     render() {
       if (!this.props.isAuth) return <Navigate to={"/login"} />
