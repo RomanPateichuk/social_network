@@ -1,4 +1,5 @@
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from 'react-router-dom';
 import store from './redux/redux-store'
 import React from 'react';
 import ReactDOM from 'react-dom/client';
@@ -11,14 +12,15 @@ let root = ReactDOM.createRoot(document.getElementById('root'))
 
 
 root.render(
-  <Provider store={store}>
-    <App />
-  </Provider>
+  <BrowserRouter>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </BrowserRouter>
 );
 
-
-
 reportWebVitals();
+
 // store.subscribe(() => {
 //   let state = store.getState();
 //   rerenderEntireTree(state)

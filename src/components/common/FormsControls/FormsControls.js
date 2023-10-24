@@ -19,7 +19,7 @@ export const Input = ({ input, meta, ...props }) => {
   return (
     <div className={s.formControl + ' ' + (hasError ? s.error : '')}>
       <div>
-        <input {...input} {...props} />
+        <input {...input} {...props} autoComplete="on" />
       </div>
       {hasError && <span>{meta.error}</span>}
     </div>
