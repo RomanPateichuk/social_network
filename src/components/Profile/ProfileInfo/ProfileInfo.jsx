@@ -2,27 +2,27 @@ import Preloader from '../../common/Preloader/Preloader';
 import a from './ProfileInfo.module.css'
 import userDefaultPhoto from '../../../assets/images/userPhoto.png'
 import ProfileStatusWithHooks from './ProfileStatusWithHooks'
-const ProfileInfo = (props) => {
-  if (!props.profile) {
+const ProfileInfo = ({ profile, status, updateStatus }) => {
+  if (!profile) {
     return <Preloader />
   }
   return (
     <div>
       <div className={a.descriptionBlock}>
-        <img src={props.profile.photos.large ? props.profile.photos.large : userDefaultPhoto} alt="" />
-        <p>id: {props.profile.userId}</p>
-        <p>{props.profile.fullName}</p>
-        <p>About me: {props.profile.aboutMe ? props.profile.fullName : <span>no info</span>}</p>
+        <img src={profile.photos.large ? profile.photos.large : userDefaultPhoto} alt="" />
+        <p>id: {profile.userId}</p>
+        <p>{profile.fullName}</p>
+        <p>About me: {profile.aboutMe ? profile.fullName : <span>no info</span>}</p>
         {
 
-          Object.keys(props.profile.contacts).map(element => {
+          Object.keys(profile.contacts).map(element => {
             return <div key={element}>
-              <span >{props.profile.contacts[element] ? element + ':  ' + props.profile.contacts[element] : <span>{element}: no info</span>}</span>
+              <span >{profile.contacts[element] ? element + ':  ' + profile.contacts[element] : <span>{element}: no info</span>}</span>
             </div>
           })
         }
       </div>
-      <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus} />
+      <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
     </div>
   );
 }
