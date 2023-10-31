@@ -5,15 +5,16 @@ import News from './components/News/News'
 import Music from './components/Music/Music'
 import Settings from './components/Settings/Settings'
 import UsersContainer from './components/Users/UsersContainer'
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import ErrorPage from './components/ErrorPage/ErrorPage';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import LoginPage from './components/Login/Login'
 import React from 'react';
-import { connect } from 'react-redux'
+import { connect, Provider } from 'react-redux'
 import { initializedApp } from './redux/app-reducer'
 import Preloader from './components/common/Preloader/Preloader';
+import store from './redux/redux-store'
 
 class App extends React.Component {
 
@@ -51,5 +52,20 @@ const mapStateToProps = (state) => ({
   initialized: state.app.initialized
 })
 
-export default connect(mapStateToProps, { initializedApp })(App);
+let AppContainer = connect(mapStateToProps, { initializedApp })(App);
+
+export const SamuraiJSApp = (props) => {
+  return <BrowserRouter>
+    <Provider store={store}>
+      <AppContainer />
+    </Provider>
+  </BrowserRouter>
+}
+
+
+
+
+
+
+
 

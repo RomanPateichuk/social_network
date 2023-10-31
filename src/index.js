@@ -1,27 +1,14 @@
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter } from 'react-router-dom';
-import store from './redux/redux-store'
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import { createRoot } from 'react-dom/client';
+import { SamuraiJSApp } from './App';
 import './index.css';
-import { Provider } from 'react-redux';
-import App from './App';
 
-
-let root = ReactDOM.createRoot(document.getElementById('root'))
-
+let rootElement = document.getElementById('root')
+const root = createRoot(rootElement)
 
 root.render(
-  <BrowserRouter>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </BrowserRouter>
-);
+  <SamuraiJSApp />
+)
 
 reportWebVitals();
-
-// store.subscribe(() => {
-//   let state = store.getState();
-//   rerenderEntireTree(state)
-// });
