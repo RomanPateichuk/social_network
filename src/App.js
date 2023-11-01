@@ -4,7 +4,7 @@ import News from './components/News/News'
 import Music from './components/Music/Music'
 import Settings from './components/Settings/Settings'
 import UsersContainer from './components/Users/UsersContainer'
-import { Route, Routes, BrowserRouter } from 'react-router-dom';
+import { Route, Routes, HashRouter } from 'react-router-dom';
 import ErrorPage from './components/ErrorPage/ErrorPage';
 import HeaderContainer from './components/Header/HeaderContainer';
 import LoginPage from './components/Login/Login'
@@ -55,12 +55,15 @@ const mapStateToProps = (state) => ({
 
 let AppContainer = connect(mapStateToProps, { initializedApp })(App);
 
+
+// basename={process.env.PUBLIC_URL}
+
 export const SamuraiJSApp = (props) => {
-  return <BrowserRouter>
+  return <HashRouter>
     <Provider store={store}>
       <AppContainer />
     </Provider>
-  </BrowserRouter>
+  </HashRouter>
 }
 
 
