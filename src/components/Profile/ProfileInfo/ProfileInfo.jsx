@@ -9,7 +9,7 @@ const ProfileInfo = ({ profile, status, updateStatus }) => {
   return (
     <div>
       <div className={a.descriptionBlock}>
-        <img src={profile.photos.large ? profile.photos.large : userDefaultPhoto} alt="" />
+        <img src={profile.photos.large || userDefaultPhoto} alt="" />
         <p>id: {profile.userId}</p>
         <p>{profile.fullName}</p>
         <p>About me: {profile.aboutMe ? profile.fullName : <span>no info</span>}</p>
