@@ -28,7 +28,7 @@ const ProfiStatusWithHooks = (props) => {
     <div>
       {!editMode &&
         <div>
-          <span onDoubleClick={activeEditMode}>{status || "No status..."}</span>
+          <b>Status: </b><span onDoubleClick={activeEditMode}>{status || "No status..."}</span>
         </div>
       }
       {editMode &&
