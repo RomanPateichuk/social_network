@@ -1,5 +1,6 @@
 import { React, useState } from 'react'
 import s from './Paginator.module.css'
+// import cn from "classnames"
 
 let Paginator = ({ portionSize = 20, totalUsersCount, pageSize, currentPage, onPageChanged }) => {
   let pagesCount = Math.ceil(totalUsersCount / pageSize)
@@ -13,7 +14,7 @@ let Paginator = ({ portionSize = 20, totalUsersCount, pageSize, currentPage, onP
   let [portionNumber, setPortionNumber] = useState(1)
   let leftPorionPageNumber = (portionNumber - 1) * portionSize + 1
   let rightPortionPageNumber = portionNumber * portionSize
-
+  // className={cn(s.style1, { [s.style2]: item === 0 })}
   return <div>
     {portionNumber > 1 &&
       <button onClick={() => { setPortionNumber(portionNumber - 1) }}>Prev</button>}
@@ -25,7 +26,7 @@ let Paginator = ({ portionSize = 20, totalUsersCount, pageSize, currentPage, onP
 
     }
     {portionCount > portionNumber && <button onClick={() => { setPortionNumber(portionNumber + 1) }}>Next</button>}
-  </div>
+  </div >
 
 }
 

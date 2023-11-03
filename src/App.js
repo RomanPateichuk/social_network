@@ -4,7 +4,7 @@ import News from './components/News/News'
 import Music from './components/Music/Music'
 import Settings from './components/Settings/Settings'
 import UsersContainer from './components/Users/UsersContainer'
-import { Route, Routes, HashRouter } from 'react-router-dom';
+import { Route, Routes, BrowserRouter, Navigate } from 'react-router-dom';
 import ErrorPage from './components/ErrorPage/ErrorPage';
 import HeaderContainer from './components/Header/HeaderContainer';
 import LoginPage from './components/Login/Login'
@@ -33,6 +33,7 @@ class App extends React.Component {
         <Navbar />
         <div className="app-wrapper-content">
           <Routes>
+            <Route path='/' element={<Navigate to="/profile" />} />
             <Route path='/profile/:userId?' element={<React.Suspense fallback={<div>Loading...</div>}><ProfileContainer /></React.Suspense>} />
             <Route path='/dialogs' element={<React.Suspense fallback={<div>Loading...</div>}><DialogsContainer /></React.Suspense>} />
             <Route path='/news' element={<News />} />
@@ -59,11 +60,11 @@ let AppContainer = connect(mapStateToProps, { initializedApp })(App);
 // basename={process.env.PUBLIC_URL}
 
 export const SamuraiJSApp = (props) => {
-  return <HashRouter>
+  return <BrowserRouter>
     <Provider store={store}>
       <AppContainer />
     </Provider>
-  </HashRouter>
+  </BrowserRouter>
 }
 
 
