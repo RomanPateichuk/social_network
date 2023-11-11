@@ -3,6 +3,11 @@ on:
   workflow_dispatch:
   pull_request:
     types: [opened, edited, reopen]
+  push:
+    branches:
+      - master
+      paths-ignore:
+      - '.github/workflows/*' 
 jobs: 
   print:
       runs-on: ubuntu-latest
