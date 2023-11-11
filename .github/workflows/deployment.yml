@@ -2,15 +2,9 @@ name: Deploy React App
 on: workflow_dispatch
 jobs:
   test: 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-lates
     steps:
-      # - name: Get the repository code
-      #   uses: actions/checkout@v3
-      # - name: Install dependecies
-      #   run: npm ci
-      # - name: Test app
-      #   run: npm run test
-          run: echo Testing...
+      - run: echo run tests 
   lint: 
     runs-on: ubuntu-latest
     needs: test
