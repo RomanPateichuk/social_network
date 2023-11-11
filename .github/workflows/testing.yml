@@ -1,0 +1,12 @@
+name: Test React App
+on: workflow_dispatch
+jobs:
+  runs-on: ubuntu-latest
+  steps:
+    - name: Get the repository code
+      uses: actions/checkout@v3
+    - name: Install dependecies
+      run: npm ci
+    - name: Test app
+      run: nmp run test
+      
