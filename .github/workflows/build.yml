@@ -1,7 +1,7 @@
 name: Build React App
 on: workflow_dispatch
 jobs:
-  lint: 
+  build: 
     runs-on: ubuntu-latest
     steps:
       - name: Get the repository code
