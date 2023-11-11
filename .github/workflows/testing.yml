@@ -9,5 +9,5 @@ jobs:
       - name: Install dependecies
         run: npm ci
       - name: Test app
-        run: nmp run test
+        run: npm run test
       
