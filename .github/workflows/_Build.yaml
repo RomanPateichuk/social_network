@@ -1,4 +1,4 @@
-name: Build
+name: Build with Artifact
 on: [workflow_dispatch]
 jobs:
   build:
@@ -15,4 +15,13 @@ jobs:
         with:
           path: build
           name: build-files
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get build project
+        uses: actions/download-artifact@v3
+        with:
+          name: build-files
+
           
