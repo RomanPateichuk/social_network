@@ -1,3 +1,9 @@
 .selectedPage {
   font-weight: bold;
 }
+
+.pageNumber {
+  display: inline-block;
+  border: 1px solid black;
+  padding: .3125rem;
+}
