@@ -20,28 +20,31 @@ const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileCo
 class App extends React.Component {
 
   componentDidMount() {
-    this.props.initializedApp()
+    // this.props.initializedApp()
   }
 
   render() {
-    if (!this.props.initialized) {
-      return <Preloader />
-    }
+
+    // if (!this.props.initialized) {
+    //   //@ts-ignore
+    //   return <Preloader />
+    // }
+
     return (
-      <div className="app-wrapper">
+      <div className="app-wrapper" >
         <HeaderContainer />
-        <Navbar />
-        <div className="app-wrapper-content">
+        < Navbar />
+        <div className="app-wrapper-content" >
           <Routes>
-            <Route path='/' element={<Navigate to="/profile" />} />
-            <Route path='/profile/:userId?' element={<React.Suspense fallback={<div>Loading...</div>}><ProfileContainer /></React.Suspense>} />
-            <Route path='/dialogs' element={<React.Suspense fallback={<div>Loading...</div>}><DialogsContainer /></React.Suspense>} />
-            <Route path='/news' element={<News />} />
-            <Route path='/music' element={<Music />} />
-            <Route path='/settings' element={<Settings />} />
-            <Route path='/users' element={<UsersContainer />} />
-            <Route path='/login' element={<LoginPage />} />
-            <Route path='*' element={<ErrorPage />} />
+            <Route path='/' element={< Navigate to="/profile" />} />
+            < Route path='/profile/:userId?' element={< React.Suspense fallback={<div> Loading...</div>}><ProfileContainer /> </React.Suspense>} />
+            <Route path='/dialogs' element={< React.Suspense fallback={<div> Loading...</div>}><DialogsContainer /> </React.Suspense>} />
+            <Route path='/news' element={< News />} />
+            < Route path='/music' element={< Music />} />
+            < Route path='/settings' element={< Settings />} />
+            < Route path='/users' element={< UsersContainer />} />
+            < Route path='/login' element={< LoginPage />} />
+            < Route path='*' element={< ErrorPage />} />
           </Routes>
         </div>
       </div>
@@ -50,7 +53,7 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: any) => ({
   initialized: state.app.initialized
 })
 
@@ -59,7 +62,7 @@ let AppContainer = connect(mapStateToProps, { initializedApp })(App);
 
 // basename={process.env.PUBLIC_URL}
 
-export const SamuraiJSApp = (props) => {
+export const SamuraiJSApp = (props: any) => {
   return <BrowserRouter>
     <Provider store={store}>
       <AppContainer />
