@@ -11,12 +11,12 @@ const SAVE_PHOTO_SUCCESS = "SAVE_PHOTO_SUCCESS"
 
 let initialState = {
   posts: [
-    { id: "1", message: "'Hi, how are you", likeCount: "0" },
-    { id: "2", message: "'Hi, how are you", likesCount: '23' },
-    { id: "3", message: "It's, my first post", likesCount: "0" },
-    { id: "4", message: "It's, my first post", likesCount: "0" },
-    { id: "5", message: "It's, my first post", likesCount: "0" },
-    { id: "6", message: "It's, my first post", likesCount: "0" },
+    { id: 1, message: "'Hi, how are you", likeCount: "0" },
+    { id: 2, message: "'Hi, how are you", likesCount: '23' },
+    { id: 3, message: "It's, my first post", likesCount: "0" },
+    { id: 4, message: "It's, my first post", likesCount: "0" },
+    { id: 5, message: "It's, my first post", likesCount: "0" },
+    { id: 6, message: "It's, my first post", likesCount: "0" },
   ] as Array<PostType>,
   profile: null as ProfileType | null,
   status: '',
@@ -28,7 +28,7 @@ const profileReducer = (state = initialState, action: any): initialStateType => 
 
   switch (action.type) {
     case ADD_POST: {
-      let newPost = { id: uuid(), message: action.post, likesCount: '0' }
+      let newPost = { id: 50, message: action.post, likesCount: '0' }
 
       return {
         ...state,
@@ -75,7 +75,7 @@ type setStatusActionType = {
 
 type deletePostActionType = {
   type: typeof DELETE_POST
-  postId: string
+  postId: number
 }
 
 type savePhotoSuccessActionType = {
@@ -86,17 +86,17 @@ type savePhotoSuccessActionType = {
 export const addPostActionCreator = (post: string): addPostActionActionType => ({ type: ADD_POST, post })
 export const setUserProfile = (profile: ProfileType): setUserProfileActionType => ({ type: SET_USER_PROFILE, profile: profile })
 export const setStatus = (status: string): setStatusActionType => ({ type: SET_STATUS, status })
-export const deletePost = (postId: string): deletePostActionType => ({ type: DELETE_POST, postId })
+export const deletePost = (postId: number): deletePostActionType => ({ type: DELETE_POST, postId })
 export const savePhotoSuccess = (photos: PhotosType): savePhotoSuccessActionType => ({ type: SAVE_PHOTO_SUCCESS, photos })
 
 
-export const getUserProfile = (userId: string) => async (dispatch: any) => {
+export const getUserProfile = (userId: number) => async (dispatch: any) => {
   let response = await profileAPI.getProfile(userId)
   dispatch(setUserProfile(response.data))
 }
 
 
-export const getStatus = (userId: string) => async (dispatch: any) => {
+export const getStatus = (userId: number) => async (dispatch: any) => {
   let response = await profileAPI.getStatus(userId)
   dispatch(setStatus(response.data))
 }
