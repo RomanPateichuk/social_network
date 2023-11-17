@@ -6,7 +6,7 @@ import Preloader from '../common/Preloader/Preloader'
 import { compose } from 'redux'
 import { getFollowingInProgress, getIsFetching, getTotalUsersCount, getPageSize, getCurrentPage, getUsers } from '../../redux/users-selectors'
 import { UserType } from '../../types/types'
-import { AppStateType } from '../../redux/redux-store'
+import { AppStateType } from '../../redux/store'
 
 
 type MapStatePropsType = {

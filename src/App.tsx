@@ -11,24 +11,34 @@ import LoginPage from './components/Login/Login'
 import React from 'react';
 import { connect, Provider } from 'react-redux'
 import { initializedApp } from './redux/app-reducer'
-import store from './redux/redux-store'
+import store, { AppStateType } from './redux/store'
 import Preloader from './components/common/Preloader/Preloader';
 
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'))
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'))
 
-class App extends React.Component {
+type MapStatePropsType = {
+  initialized: boolean
+}
+
+type MapDispatchPropsType = {
+  initializedApp: () => void
+}
+
+type PropsType = MapDispatchPropsType & MapStatePropsType
+
+class App extends React.Component<PropsType> {
 
   componentDidMount() {
-    // this.props.initializedApp()
+    this.props.initializedApp()
   }
 
   render() {
 
-    // if (!this.props.initialized) {
-    //   //@ts-ignore
-    //   return <Preloader />
-    // }
+    if (!this.props.initialized) {
+      //@ts-ignore
+      return <Preloader />
+    }
 
     return (
       <div className="app-wrapper" >
@@ -53,7 +63,7 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: AppStateType) => ({
   initialized: state.app.initialized
 })
 

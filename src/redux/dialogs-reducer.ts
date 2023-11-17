@@ -1,67 +1,65 @@
-import { v4 as uuid } from 'uuid';
-const SEND_MESSAGE = 'SEND-MESSAGE'
-
-type MessageType = {
-  id: string
-  message: string
-}
-
-type DialogType = {
-  id: string
-  name: string
-}
+import { InferActionsTypes } from "./store"
 
 let initialState = {
   messages: [
-    { id: "6", message: "Hi" },
-    { id: "7", message: "Hello" },
-    { id: "8", message: "How are you?" },
+    { id: 6, message: "Hi" },
+    { id: 7, message: "Hello" },
+    { id: 8, message: "How are you?" },
   ] as Array<MessageType>,
   dialogs: [
     {
-      id: "1",
+      id: 1,
       name: 'Roman'
     },
     {
-      id: "2",
+      id: 2,
       name: 'Sveta'
     },
     {
-      id: "3",
+      id: 3,
       name: 'Andrey'
     },
     {
-      id: "4",
+      id: 4,
       name: 'Seny'
     },
     {
-      id: "5",
+      id: 5,
       name: 'Sacha'
     }
   ] as Array<DialogType>,
 }
 
-export type InitialStateType = typeof initialState
+export const actions = {
+  sendMessageCreator: (newMessageBody: string) =>
+    ({ type: 'SN/DIALOGS/SEND-MESSAGE', newMessageBody } as const)
+}
 
-const dialogsReducer = (state = initialState, action: any): InitialStateType => {
+const dialogsReducer = (state = initialState, action: ActionsType): InitialStateType => {
 
   switch (action.type) {
-    case SEND_MESSAGE:
+    case 'SN/DIALOGS/SEND-MESSAGE':
       let body = action.newMessageBody
       return {
         ...state,
-        messages: [...state.messages, { id: uuid(), message: body }]
+        messages: [...state.messages, { id: Date.now(), message: body }]
       }
     default:
       return state
   }
 }
 
-type sendMessageActionCreatorType = {
-  type: typeof SEND_MESSAGE
-  newMessageBody: string
+export default dialogsReducer;
+
+type MessageType = {
+  id: number
+  message: string
 }
 
-export const sendMessageCreator = (newMessageBody: string): sendMessageActionCreatorType => ({ type: SEND_MESSAGE, newMessageBody })
+type DialogType = {
+  id: number
+  name: string
+}
 
-export default dialogsReducer;
+export type InitialStateType = typeof initialState
+type ActionsType = InferActionsTypes<typeof actions>
