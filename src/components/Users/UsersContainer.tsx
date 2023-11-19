@@ -8,28 +8,6 @@ import { getFollowingInProgress, getIsFetching, getTotalUsersCount, getPageSize,
 import { UserType } from '../../types/types'
 import { AppStateType } from '../../redux/store'
 
-
-type MapStatePropsType = {
-  users: Array<UserType>
-  pageSize: number
-  currentPage: number
-  totalUsersCount: number
-  isFetching: boolean
-  followingInProgress: Array<number>
-}
-
-type MapDispatchPropsType = {
-  follow: (userId: number) => void
-  unfollow: (userId: number) => void
-  requestUsers: (currentPage: number, pageSize: number) => void
-}
-
-type OwnPropsType = {
-  title: string
-}
-
-type PropsType = MapDispatchPropsType & MapStatePropsType & OwnPropsType
-
 class UsersContainer extends React.Component<PropsType> {
 
   componentDidMount() {
@@ -77,5 +55,27 @@ let mapStateToProps = (state: AppStateType) => {
 export default compose(connect<MapStatePropsType, MapDispatchPropsType, OwnPropsType, AppStateType>(mapStateToProps, {
   follow, unfollow, requestUsers,
 }))(UsersContainer)
+
+// types
+type MapStatePropsType = {
+  users: Array<UserType>
+  pageSize: number
+  currentPage: number
+  totalUsersCount: number
+  isFetching: boolean
+  followingInProgress: Array<number>
+}
+
+type MapDispatchPropsType = {
+  follow: (userId: number) => void
+  unfollow: (userId: number) => void
+  requestUsers: (currentPage: number, pageSize: number) => void
+}
+
+type OwnPropsType = {
+  title: string
+}
+
+type PropsType = MapDispatchPropsType & MapStatePropsType & OwnPropsType
 
 

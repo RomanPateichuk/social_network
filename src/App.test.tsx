@@ -1,8 +1,8 @@
-import { render } from '@testing-library/react';
+import ReactDOM from 'react-dom';
 import { SamuraiJSApp } from './App';
 
 test('renders react component', () => {
   const block = document.createElement('div')
-  render(<SamuraiJSApp />, block)
-
+  ReactDOM.render(<SamuraiJSApp />, block)
+  ReactDOM.unmountComponentAtNode(block)
 });

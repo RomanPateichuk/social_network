@@ -85,7 +85,6 @@ export const follow = (userId: number): ThunkType => {
   }
 }
 
-
 export const unfollow = (userId: number): ThunkType => {
   return async (dispatch) => {
     let apiMethod = usersAPI.unfollow.bind(usersAPI)

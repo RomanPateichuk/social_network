@@ -3,14 +3,13 @@ import { NavLink } from 'react-router-dom'
 
 const toggleActiveClass = ({ isActive }) => {
   return isActive ? classes.active : undefined
-};
-
+}
 
 const Navbar = () => {
   return (
     <nav className={classes.nav}>
       <div className={classes.item}>
-        <NavLink to='/profile' className={toggleActiveClass}>Profile</NavLink>
+        <NavLink to='/profile' activeClassName={toggleActiveClass}>Profile</NavLink>
       </div>
       <div className={classes.item}>
         <NavLink to='/dialogs' className={toggleActiveClass}>Messages</NavLink>

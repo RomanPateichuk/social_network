@@ -1,6 +1,12 @@
 import s from './MyPost.module.css'
 
-const MyPost = (props) => {
+type PropsType = {
+  message: string
+  likesCount: string
+}
+
+
+const MyPost: React.FC<PropsType> = (props) => {
   return (
     <div className={s.item}>
       <img src="https://klike.net/uploads/posts/2021-08/1629443054_1.jpg" alt="post" />
@@ -11,6 +17,5 @@ const MyPost = (props) => {
     </div>
   );
 }
-
 
 export default MyPost;

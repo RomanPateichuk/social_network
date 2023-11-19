@@ -21,3 +21,5 @@ export const withAuthRedirect = (Сomponent) => {
 
   return connectedAuthRedirectComponent
 }
+
+// ts 11

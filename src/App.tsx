@@ -17,16 +17,6 @@ import Preloader from './components/common/Preloader/Preloader';
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'))
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'))
 
-type MapStatePropsType = {
-  initialized: boolean
-}
-
-type MapDispatchPropsType = {
-  initializedApp: () => void
-}
-
-type PropsType = MapDispatchPropsType & MapStatePropsType
-
 class App extends React.Component<PropsType> {
 
   componentDidMount() {
@@ -36,7 +26,6 @@ class App extends React.Component<PropsType> {
   render() {
 
     if (!this.props.initialized) {
-      //@ts-ignore
       return <Preloader />
     }
 
@@ -69,16 +58,23 @@ const mapStateToProps = (state: AppStateType) => ({
 
 let AppContainer = connect(mapStateToProps, { initializedApp })(App);
 
-
-// basename={process.env.PUBLIC_URL}
-
-export const SamuraiJSApp = (props: any) => {
+export const SamuraiJSApp = () => {
   return <BrowserRouter>
     <Provider store={store}>
       <AppContainer />
     </Provider>
   </BrowserRouter>
 }
+
+
+// types
+type MapStatePropsType = ReturnType<typeof mapStateToProps>
+
+type MapDispatchPropsType = {
+  initializedApp: () => void
+}
+
+type PropsType = MapDispatchPropsType & MapStatePropsType
 
 
 

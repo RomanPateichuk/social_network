@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { InjectedFormProps, reduxForm } from 'redux-form'
 import { required } from '../../utils/validators/validators'
-import { CreateField, Input } from '../common/FormsControls/FormsControls'
+import { CreateField, GetStringKeys, Input } from '../common/FormsControls/FormsControls'
 import { connect } from 'react-redux'
 import { login } from '../../redux/auth-reducer'
 import { useNavigate } from "react-router-dom";
@@ -54,7 +54,7 @@ export type LoginFormValuesType = {
   captcha: string
 }
 
-type LoginFormvaluesTypeKeys = keyof LoginFormValuesType
+type LoginFormvaluesTypeKeys = GetStringKeys<LoginFormValuesType>
 
 const Login: React.FC<MapStatePropsType & MapDispatchPropsType> = (props) => {
   const navigate = useNavigate();

@@ -31,7 +31,7 @@ let initialState = {
 }
 
 export const actions = {
-  sendMessageCreator: (newMessageBody: string) =>
+  sendMessage: (newMessageBody: string) =>
     ({ type: 'SN/DIALOGS/SEND-MESSAGE', newMessageBody } as const)
 }
 
