@@ -1,5 +1,5 @@
 import axios from "axios"
-import { ProfileType, UserType } from "../types/types"
+import { UserType } from "../types/types"
 
 
 export const instance = axios.create({

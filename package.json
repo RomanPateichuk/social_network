@@ -29,7 +29,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
-    "test": "react-scripts test --transformIgnorePatterns --watchAll",
+    "test": "react-scripts test --transformIgnorePatterns --watchAll --maxWorkers 2",
     "eject": "react-scripts eject",
     "build": "react-scripts build",
     "lint": "npx eslint ./src"
