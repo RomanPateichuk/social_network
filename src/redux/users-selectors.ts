@@ -30,3 +30,7 @@ export const getUsersSuperSelector = createSelector(getUsers, (users) => {
   return users.filter(item => true)
 })
 
+export const getUsersFilter = (state: AppStateType) => {
+  return state.usersPage.filter
+}
+
