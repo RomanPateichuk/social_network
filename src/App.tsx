@@ -3,11 +3,11 @@ import Navbar from './components/Navbar/Navbar'
 import News from './components/News/News'
 import Music from './components/Music/Music'
 import Settings from './components/Settings/Settings'
-import UsersContainer from './components/Users/UsersContainer'
+import { UsersPage } from './components/Users/UsersPage'
 import { Route, Routes, BrowserRouter, Navigate } from 'react-router-dom';
 import ErrorPage from './components/ErrorPage/ErrorPage';
 import HeaderContainer from './components/Header/HeaderContainer';
-import LoginPage from './components/Login/Login'
+import { LoginPage } from './components/Login/Login'
 import React from 'react';
 import { connect, Provider } from 'react-redux'
 import { initializedApp } from './redux/app-reducer'
@@ -41,7 +41,7 @@ class App extends React.Component<PropsType> {
             <Route path='/news' element={< News />} />
             < Route path='/music' element={< Music />} />
             < Route path='/settings' element={< Settings />} />
-            < Route path='/users' element={< UsersContainer title="Привет самурай" />} />
+            < Route path='/users' element={< UsersPage title="Привет самурай" />} />
             < Route path='/login' element={< LoginPage />} />
             < Route path='*' element={< ErrorPage />} />
           </Routes>
