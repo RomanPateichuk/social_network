@@ -1,9 +1,9 @@
-import { Dispatch } from "react"
-import { ResponseType } from "../api/api"
-import { usersAPI } from "../api/users-api"
-import { UserType } from "../types/types"
-import { updateObjectInArray } from "../utils/objects-helpers"
-import { BaseThunkType, InferActionsTypes } from "./store"
+import {Dispatch} from "react"
+import {ResponseType} from "../api/api"
+import {usersAPI} from "../api/users-api"
+import {UserType} from "../types/types"
+import {updateObjectInArray} from "../utils/objects-helpers"
+import {BaseThunkType, InferActionsTypes} from "./store"
 
 let initialState = {
   users: [] as Array<UserType>,
@@ -23,21 +23,21 @@ const usersReducer = (state = initialState, action: ActionsTypes): InitialStateT
     case 'SN/USERS/FOLLOW':
       return {
         ...state,
-        users: updateObjectInArray(state.users, action.userId, "id", { followed: true })
+        users: updateObjectInArray(state.users, action.userId, "id", {followed: true})
       }
     case 'SN/USERS/UNFOLLOW':
       return {
         ...state,
-        users: updateObjectInArray(state.users, action.userId, "id", { followed: false })
+        users: updateObjectInArray(state.users, action.userId, "id", {followed: false})
       }
     case 'SN/USERS/SET_USERS':
-      return { ...state, users: [...action.users] }
+      return {...state, users: [...action.users]}
     case 'SN/USERS/SET_CURRENT_PAGE':
-      return { ...state, currentPage: action.currentPage }
+      return {...state, currentPage: action.currentPage}
     case 'SN/USERS/SET_TOTAL_USERS_COUNT':
-      return { ...state, totalUsersCount: action.totalUsersCount }
+      return {...state, totalUsersCount: action.totalUsersCount}
     case 'SN/USERS/TOGGLE_IS_FETCHING':
-      return { ...state, isFetching: action.isFetching }
+      return {...state, isFetching: action.isFetching}
     case 'SN/USERS/TOGGLE_IS_FOLLOWING_PROGRESS':
       return {
         ...state,
@@ -51,19 +51,27 @@ const usersReducer = (state = initialState, action: ActionsTypes): InitialStateT
         filter: action.payload
       }
 
-    default: return state
+    default:
+      return state
   }
 }
 
 export const actions = {
-  followSuccess: (id: number) => ({ type: 'SN/USERS/FOLLOW', userId: id } as const),
-  unfollowSuccess: (id: number) => ({ type: 'SN/USERS/UNFOLLOW', userId: id } as const),
-  setUsers: (users: Array<UserType>) => ({ type: 'SN/USERS/SET_USERS', users } as const),
-  setCurrentPage: (pageNumber: number) => ({ type: 'SN/USERS/SET_CURRENT_PAGE', currentPage: pageNumber } as const),
-  setFilter: (filter: FilterType) => ({ type: 'SN/USERS/SET_FILTER', payload: filter } as const),
-  setTotalUsersCount: (totalUsersCount: number) => ({ type: 'SN/USERS/SET_TOTAL_USERS_COUNT', totalUsersCount: totalUsersCount } as const),
-  toggleIsFetching: (isFetching: boolean) => ({ type: 'SN/USERS/TOGGLE_IS_FETCHING', isFetching: isFetching } as const),
-  toggleFollowingProgress: (isFetching: boolean, userId: number) => ({ type: 'SN/USERS/TOGGLE_IS_FOLLOWING_PROGRESS', isFetching, userId } as const),
+  followSuccess: (id: number) => ({type: 'SN/USERS/FOLLOW', userId: id} as const),
+  unfollowSuccess: (id: number) => ({type: 'SN/USERS/UNFOLLOW', userId: id} as const),
+  setUsers: (users: Array<UserType>) => ({type: 'SN/USERS/SET_USERS', users} as const),
+  setCurrentPage: (pageNumber: number) => ({type: 'SN/USERS/SET_CURRENT_PAGE', currentPage: pageNumber} as const),
+  setFilter: (filter: FilterType) => ({type: 'SN/USERS/SET_FILTER', payload: filter} as const),
+  setTotalUsersCount: (totalUsersCount: number) => ({
+    type: 'SN/USERS/SET_TOTAL_USERS_COUNT',
+    totalUsersCount: totalUsersCount
+  } as const),
+  toggleIsFetching: (isFetching: boolean) => ({type: 'SN/USERS/TOGGLE_IS_FETCHING', isFetching: isFetching} as const),
+  toggleFollowingProgress: (isFetching: boolean, userId: number) => ({
+    type: 'SN/USERS/TOGGLE_IS_FOLLOWING_PROGRESS',
+    isFetching,
+    userId
+  } as const),
 }
 
 
@@ -80,9 +88,9 @@ export const requestUsers = (page: number, pageSize: number, filter: FilterType)
 }
 
 const _followUnfollowFlow = async (dispatch: Dispatch<ActionsTypes>,
-  userId: number,
-  apiMethod: (userId: number) => Promise<ResponseType>,
-  actionCreator: (userId: number) => ActionsTypes) => {
+                                   userId: number,
+                                   apiMethod: (userId: number) => Promise<ResponseType>,
+                                   actionCreator: (userId: number) => ActionsTypes) => {
   dispatch(actions.toggleFollowingProgress(true, userId))
   let response = await apiMethod(userId)
 
