@@ -17,3 +17,4 @@ const mapStateToProps = (state: AppStateType) => ({
 })
 
 export default connect<MapPropsType, DispatchPropsType, {}, AppStateType>(mapStateToProps, { logout })(HeaderContainer);
+
