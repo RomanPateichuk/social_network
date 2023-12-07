@@ -1,15 +1,25 @@
 .header {
-  grid-area: h;
-  background-color: green;
-  display: flex;
-  justify-content: space-between;
-  padding: 1rem;
+    display: flex;
+    justify-content: space-between;
 }
 
-.header img {
-  width: 20px;
+.logo {
+    width: 50px;
+    height: 50px;
+}
+
+.imageContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loginContainer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .loginBlock a {
-  color: white;
+    color: white;
 }

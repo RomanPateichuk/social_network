@@ -13,7 +13,7 @@ import store, {AppStateType} from './redux/store'
 import Preloader from './components/common/Preloader/Preloader';
 import { ProfileOutlined, UserSwitchOutlined, MessageOutlined, SettingOutlined, PlayCircleOutlined, CompassOutlined } from '@ant-design/icons';
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
-import HeaderContainer from "./components/Header/HeaderContainer";
+import {HeaderComponent as Header} from "./components/Header/Header";
 
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'))
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'))
@@ -37,7 +37,7 @@ const App: React.FC<PropsType> = (props) => {
   return (
     <Layout>
       {!(!initialized || !<Preloader/>)}
-        <HeaderContainer/>
+        <Header/>
       <Content style={{ padding: '0 50px' }}>
         <Breadcrumb style={{ margin: '16px 0' }}>
           <Breadcrumb.Item>Home</Breadcrumb.Item>
