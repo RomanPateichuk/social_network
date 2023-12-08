@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
 
-const ws = new WebSocket('wss://social-network.samuraijs.com/handlers/ChatHandler.ashx')
 
 export type ChatMessageType = {
   message: string,
@@ -17,22 +16,49 @@ export const ChatPage: React.FC = () => {
 }
 
 const Chat: React.FC = () => {
+  const [ws, setWs] = useState<WebSocket | null>(null)
+  useEffect(() => {
+    let ws: WebSocket
+    const closeHandler = () => {
+      setTimeout(createChanel, 3000)
+    }
+
+    function createChanel() {
+      ws?.removeEventListener('close', closeHandler)
+      ws?.close()
+      ws = new WebSocket('wss://social-network.samuraijs.com/handlers/ChatHandler.ashx')
+      ws.addEventListener('close', closeHandler)
+      setWs(ws)
+    }
+
+    createChanel()
+
+    return () => {
+      ws.removeEventListener('close', closeHandler)
+      ws.close()
+    }
+
+  }, []);
 
 
   return <div>
-    <Messages/>
-    <AddMessageForm/>
+    <Messages ws={ws}/>
+    <AddMessageForm ws={ws}/>
   </div>
 }
 
-const Messages: React.FC = () => {
+const Messages: React.FC<{ ws: WebSocket | null }> = ({ws}) => {
   const [messages, setMessages] = useState<ChatMessageType[]>([])
   useEffect(() => {
-    ws.addEventListener('message', (e) => {
+    let messageHandler = (e: MessageEvent) => {
       let newMessages = JSON.parse(e.data);
-      setMessages((prevMessages)=>[...prevMessages, ...newMessages])
-    })
-  }, []);
+      setMessages((prevMessages) => [...prevMessages, ...newMessages])
+    }
+    ws?.addEventListener('message', messageHandler)
+    return () => {
+      ws?.removeEventListener('message', messageHandler)
+    }
+  }, [ws]);
 
 
   return <div style={{height: '400px', overflowY: 'auto'}}>
@@ -51,22 +77,33 @@ const Message: React.FC<{ message: ChatMessageType }> = ({message}) => {
   </div>
 }
 
-const AddMessageForm: React.FC = () => {
+const AddMessageForm: React.FC<{ ws: WebSocket | null }> = ({ws}) => {
   const [message, setMessage] = useState('')
-  const sendMessage = ()=>{
-    if(!message){
-     return
+  const [readyStatus, setReadyStatus] = useState<'pending' | 'ready'>('pending')
+  useEffect(() => {
+    let openHandler = () => {
+      setReadyStatus('ready')
     }
-    ws.send(message)
+    ws?.addEventListener('open', openHandler)
+
+    return () => {
+      ws?.removeEventListener('open', openHandler)
+    }
+  }, [ws]);
+  const sendMessage = () => {
+    if (!message) {
+      return
+    }
+    ws?.send(message)
     setMessage('')
   }
 
   return <div>
     <div>
-      <textarea onChange={(e)=> setMessage(e.currentTarget.value)} value={message}></textarea>
+      <textarea onChange={(e) => setMessage(e.currentTarget.value)} value={message}></textarea>
     </div>
     <div>
-      <button onClick={sendMessage}>Send</button>
+      <button disabled={ws === null || readyStatus !== 'ready'} onClick={sendMessage}>Send</button>
     </div>
   </div>
 }
